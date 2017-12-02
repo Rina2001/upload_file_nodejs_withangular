@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import {Component} from '@angular/core'
 import {  HttpHeaders } from "@angular/common/http";
 @Component({
   selector: 'app-root',
@@ -8,16 +8,17 @@ import {  HttpHeaders } from "@angular/common/http";
 })
 export class AppComponent {
   title = 'app';
-  private base64textString:String="";
+  srcimage:any;
+dataResponse:any;
+  private base64textString:any;
     constructor(private http: HttpClient) {}
 
   upload(){
-
-
       var body=JSON.stringify({"body":this.base64textString});
       var options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-      this.http.post('http://localhost:3000/api/upload',body,options).subscribe();
-       console.log(body);
+      this.http.post('http://localhost:3000/api/upload',body,options)
+                  .subscribe(data =>this.srcimage='data:image/jpg;base64,'+data.body;
+     //  this.srcimage = 'data:image/jpg;base64,'+this.base64textString;
   }
 
 
